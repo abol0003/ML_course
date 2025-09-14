@@ -20,22 +20,26 @@ def compute_gradient(y, tx, w):
     # INSERT YOUR CODE HERE
     # TODO: compute gradient vector
     # ***************************************************
-    raise NotImplementedError
+    #raise NotImplementedError
+    err=y-tx.dot(w)
+    grad= -(tx.T.dot(err))/len(y)
+    return grad
 
 
 def gradient_descent(y, tx, initial_w, max_iters, gamma):
     """The Gradient Descent (GD) algorithm.
 
     Args:
-        y: shape=(N, )
-        tx: shape=(N,2)
-        initial_w: shape=(2, ). The initial guess (or the initialization) for the model parameters
+        y: numpy array of shape=(N, )
+        tx: numpy array of shape=(N,2)
+        initial_w: numpy array of shape=(2, ). The initial guess (or the initialization) for the model parameters
         max_iters: a scalar denoting the total number of iterations of GD
         gamma: a scalar denoting the stepsize
 
     Returns:
         losses: a list of length max_iters containing the loss value (scalar) for each iteration of GD
-        ws: a list of length max_iters containing the model parameters as numpy arrays of shape (2, ), for each iteration of GD
+        ws: a list of length max_iters + 1 containing the model parameters as numpy arrays of shape (2, ),
+            for each iteration of GD (as well as the final weights)
     """
     # Define parameters to store w and loss
     ws = [initial_w]
@@ -46,12 +50,15 @@ def gradient_descent(y, tx, initial_w, max_iters, gamma):
         # INSERT YOUR CODE HERE
         # TODO: compute gradient and loss
         # ***************************************************
-        raise NotImplementedError
+        grad=compute_gradient(y,tx,w)
+        loss=compute_loss(y,tx,w)
+        #raise NotImplementedError
         # ***************************************************
         # INSERT YOUR CODE HERE
         # TODO: update w by gradient
         # ***************************************************
-        raise NotImplementedError
+        w=ws[n_iter]-gamma*grad
+        #raise NotImplementedError
 
         # store w and loss
         ws.append(w)

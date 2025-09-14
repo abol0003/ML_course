@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def compute_subgradient_mae(y, tx, w):
+def compute_subgradient_mae(y, tx, w,gamma):
     """Compute a subgradient of the MAE at w.
 
     Args:
@@ -14,6 +14,16 @@ def compute_subgradient_mae(y, tx, w):
     """
     # ***************************************************
     # INSERT YOUR CODE HERE
-    # TODO: compute subgradient gradient vector for MAE
+    # TODO: compute subgradient and loss
     # ***************************************************
-    raise NotImplementedError
+    e=y-tx.dot(w)
+    loss=np.mean(np.abs(e))
+    subgrad=-(tx.T.dot(np.sign(e)))/len(y) #sign(e) to deal with the hint
+    # raise NotImplementedError
+    # ***************************************************
+    # INSERT YOUR CODE HERE
+    # TODO: update w by subgradient
+    # ***************************************************
+    #raise NotImplementedError
+    w=w-gamma*subgrad
+    return w, loss
