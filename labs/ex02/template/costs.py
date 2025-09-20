@@ -19,4 +19,7 @@ def compute_loss(y, tx, w):
     # INSERT YOUR CODE HERE
     # TODO: compute loss by MSE
     # ***************************************************
-    raise NotImplementedError
+    #raise NotImplementedError
+    err=y-tx.dot(w)
+    return np.mean(err**2) #np.mean(np.abs(err)) for MAE
+   
