@@ -19,11 +19,6 @@ def compute_stoch_gradient(y, tx, w,gamma):
         An array of shape (2, ) (same shape as w), containing the stochastic gradient of the loss at w.
     """
 
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # TODO: implement stochastic gradient computation. It's the same as the usual gradient.
-    # ***************************************************
-    #raise NotImplementedError
     e_b = y - tx.dot( w)
     grad = -(tx.T.dot( e_b)) / len(y)
     w = w - gamma * grad
