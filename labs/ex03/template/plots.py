@@ -33,3 +33,17 @@ def plot_train_test(train_errors, test_errors, lambdas, degree):
     plt.title("Ridge regression for polynomial degree " + str(degree))
     leg = plt.legend(loc=1, shadow=True)
     leg.draw_frame(False)
+
+def grid_visualization(grid_losses, w0_list, w1_list, mean_x, std_x, height, weight):
+    """Visualize how the trained model looks like under the grid search."""
+    fig = base_visualization(
+        grid_losses, w0_list, w1_list, mean_x, std_x, height, weight
+    )
+
+    loss_star, w0_star, w1_star = get_best_parameters(w0_list, w1_list, grid_losses)
+    # plot prediciton
+    x, f = prediction(w0_star, w1_star, mean_x, std_x)
+    ax2 = fig.get_axes()[2]
+    ax2.plot(x, f, "r")
+
+    return fig
